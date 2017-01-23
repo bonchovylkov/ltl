@@ -1,30 +1,30 @@
 
 import {Component, ViewEncapsulation,OnInit} from '@angular/core';
 
-import {FitnessProgramsService,EmitterService} from '../../services/'
+import {FitnessProgramsService} from '../../services/'
 import {AppSettings} from '../../app.settings'
 
 
 @Component({
-  selector: 'home',
+  selector: 'fs-details',
   encapsulation: ViewEncapsulation.None,
-  styles: [require('./home.scss')],
-  template: require('./home.html'),
+  styles: [require('./fsdetails.scss')],
+  template: require('./fsdetails.html'),
   providers:[FitnessProgramsService]
 })
-export class Home implements OnInit{
+export class FsDetails implements OnInit{
 
-  fitnessPrograms:any[] = [];
+  fitnessProgram:any = null;
 
   constructor(private _programsService:FitnessProgramsService) {
     
-    EmitterService.get(AppSettings.EMITTER_KEY_HIDE_ASIDE).emit(false);
+    
   }
 
   ngOnInit(){
-   let items = this._programsService.loadFitnessPrograms(AppSettings.API_ENDPOINT_GET_FITNESS_PROGRAMS,0,3).subscribe(
+   let items = this._programsService.loadFitnessProgramDetails(AppSettings.API_ENDPOINT_GET_FITNESS_PROGRAM_DETAILS,0).subscribe(
                 data => {
-                   this.fitnessPrograms = data;
+                   this.fitnessProgram = data;
                 },
                 error => {
                   //  this.alertService.error(error);

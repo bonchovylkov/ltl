@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import {EmailValidator, EqualPasswordsValidator} from '../../theme/validators';
-import  {UsersService} from '../../services/index'
+import  {UsersService,EmitterService} from '../../services/index'
 import {AppSettings} from '../../app.settings'
 import {UserRegister} from '../../models'
 
@@ -27,7 +27,7 @@ export class Register {
   public submitted:boolean = false;
 
   constructor(public userSerive: UsersService,fb:FormBuilder) {
-
+EmitterService.get(AppSettings.EMITTER_KEY_HIDE_ASIDE).emit(false);
     this.form = fb.group({
       'name': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       'email': ['', Validators.compose([Validators.required, EmailValidator.validate])],

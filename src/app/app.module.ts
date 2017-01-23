@@ -15,7 +15,7 @@ import {GlobalState} from './GlobalState'
 //pages components
 // import {Register} from './pages/register/index'
 // import {Login} from './pages/login/index'
-import {Register,Login,Home,Index} from './pages'
+import {Register,Login,Home,Index,FsDetails} from './pages'
 
 //pages sub components
 import {CSSCarouselComponent} from './pages/components'
@@ -30,7 +30,7 @@ import { AppComponent } from './app.component';
 import {BaSlimScroll} from './theme/directives/index'
 
 //services - but app level services
-import {UsersService,LoggedInGuard, ApiService,HeadersService,AlertService} from './services'
+import {UsersService,LoggedInGuard, ApiService,HeadersService,AlertService,FitnessProgramsService,EmitterService} from './services'
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -40,7 +40,9 @@ const APP_PROVIDERS = [
   ApiService,
   HeadersService,
   AlertService,
-  LoggedInGuard
+  LoggedInGuard,
+  FitnessProgramsService,
+  EmitterService
 ];
 
 
@@ -49,7 +51,7 @@ const APP_PROVIDERS = [
     AppComponent,
     
     //pages components
-    Index, Register,Login,Home,
+    Index, Register,Login,Home,FsDetails,
 
     //pages sub components
     CSSCarouselComponent,

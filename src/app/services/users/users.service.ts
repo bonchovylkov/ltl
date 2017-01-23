@@ -77,23 +77,27 @@ export class UsersService {
 
 
 
-    private jwtHeader():Headers {
+     jwtHeader():Headers {
         // create authorization header with jwt token
         let currentUser = JSON.parse(localStorage.getItem(AppSettings.CURRENT_USER));
         if (this.isLoggedIn(currentUser)) {
             let headers = new Headers({ 'Authorization': 'Bearer ' + currentUser.access_token });
             return  headers;
            
+        }else{
+            return null;
         }
     }
 
-    private jwtRequestOptions():RequestOptions {
+     jwtRequestOptions():RequestOptions {
         // create authorization header with jwt token
        let headers = this.jwtHeader();
 
        if(headers){
             return new RequestOptions({ headers: headers });
-       }
+       }else{
+            return null;
+        }
     }
 
  

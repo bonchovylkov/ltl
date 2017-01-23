@@ -1,11 +1,12 @@
 import { NgModule} from '@angular/core'
 import { Routes, RouterModule } from '@angular/router';
-import {Register,Login,Home,Index} from './pages'
+import {Register,Login,Home,Index,FsDetails} from './pages'
 import {LoggedInGuard} from './services'
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component:Home },
+  { path: 'fitnes-program/:id', component:FsDetails },
   {path:'index',component:Index , canActivate:[LoggedInGuard] },
    {path:'register',component:Register },
    {path:'login',component:Login },

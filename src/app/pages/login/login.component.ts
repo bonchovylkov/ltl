@@ -1,6 +1,6 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
-import {UsersService} from '../../services'
+import {UsersService,EmitterService} from '../../services'
 import {UserLogin} from '../../models'
 import {AppSettings} from '../../app.settings'
 
@@ -19,6 +19,7 @@ export class Login {
   public submitted:boolean = false;
 
   constructor(private _userSerivce : UsersService, fb:FormBuilder) {
+    EmitterService.get(AppSettings.EMITTER_KEY_HIDE_ASIDE).emit(false);
     this.form = fb.group({
       'email': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
       'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
