@@ -3,6 +3,8 @@ import {GlobalState} from '../../../GlobalState';
 import {layoutSizes} from '../../../theme';
 import  {UsersService,EmitterService} from '../../../services'
 import {AppSettings} from '../../../app.settings'
+import { Router, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, RoutesRecognized } from '@angular/router';
+import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'ba-sidebar',
@@ -24,7 +26,10 @@ export class BaSidebar {
 
   constructor(private _elementRef:ElementRef,
    private _state:GlobalState,
-  private _userService: UsersService) {
+  private _userService: UsersService,
+  private router: Router) {
+  
+
 
     this.isLoggedIn =_userService.isLoggedIn(); 
     this.display = this.isLoggedIn
@@ -35,12 +40,27 @@ export class BaSidebar {
        this.display = data
       });
 
+      //i subscribe to route change where i reset the display 
+      router.events
+        .filter(event => event instanceof NavigationStart)
+        .subscribe((event:NavigationStart) => {
+          this.display = this.isLoggedIn;
+        });
+
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
   }
 
   public ngOnInit():void {
+
+    //this doesn't work becaouse ngOnInit is not called when navigation through anchor links
+    //this is why i subscribe to route change where i reset the display 
+    //--------------------------------------------------------------------------
+    //when the side bar inits i reset the display option by emitting if the user is logged
+    //this can be overried by another emit - like the one in the home
+   // EmitterService.get(AppSettings.EMITTER_KEY_HIDE_ASIDE).emit(this.isLoggedIn);
+
     if (this._shouldMenuCollapse()) {
       this.menuCollapse();
     }

@@ -2,7 +2,7 @@
 <ba-page-top></ba-page-top>
 
 <!--<div class="container body-content">-->
-        
+  
 <div class="container body-content">
 
     <section class="text-xs-center" id="main-section">
@@ -10,7 +10,8 @@
             <css-carousel></css-carousel>
         </div>
     </section>
-
+        <a [routerLink]="['/', 'index']" class="btn btn-secondary" role="button">
+                View details »</a>
     <!-- Three columns of text below the carousel -->
     <div class="row">
 
@@ -20,7 +21,10 @@
             <img class="img-circle" src="{{pr.PhotoUrl}}" alt="Generic placeholder image" width="140" height="140">
             <h2>{{pr.Name}}</h2>
             <p>By {{pr.AuthorName}}</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+            <p>
+                 <a [routerLink]="['/', 'fitnes-program', pr.Id]" class="btn btn-secondary" role="button">
+                View details »</a>
+                </p>
         </div>
         
        
