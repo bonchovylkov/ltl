@@ -1,4 +1,5 @@
-
+//TODO:
+//can be moved in the index/pages section
 import {Component, ViewEncapsulation,OnInit} from '@angular/core';
 
 import {FitnessProgramsService,EmitterService} from '../../services/'
@@ -7,7 +8,7 @@ import {AppSettings} from '../../app.settings'
 
 @Component({
   selector: 'home',
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None, //this enables update of a parent element styling
   styles: [require('./home.scss')],
   template: require('./home.html'),
   providers:[FitnessProgramsService]

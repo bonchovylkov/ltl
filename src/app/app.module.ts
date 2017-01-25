@@ -15,7 +15,7 @@ import {GlobalState} from './GlobalState'
 //pages components
 // import {Register} from './pages/register/index'
 // import {Login} from './pages/login/index'
-import {Register,Login,Home,Index,FsDetails} from './pages'
+import {Register,Login,Home,Index,FsDetails,Dashboard} from './pages'
 
 //pages sub components
 import {CSSCarouselComponent} from './pages/components'
@@ -51,7 +51,7 @@ const APP_PROVIDERS = [
     AppComponent,
     
     //pages components
-    Index, Register,Login,Home,FsDetails,
+    Index, Register,Login,Home,FsDetails,Dashboard,
 
     //pages sub components
     CSSCarouselComponent,

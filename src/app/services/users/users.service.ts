@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import {AlertService} from "../alert.service"
 import {HeadersService} from "../headers.service"
 import {ApiService} from "../api.service"
+import {EmitterService} from "../emitter.service"
 
 import {AppSettings} from "../../app.settings"
 import {UserRegister,UserLogin} from '../../models'
@@ -49,6 +50,7 @@ export class UsersService {
                    // this.alertService.success('Login successful', true);
 
                     if (returnUrl){
+                         EmitterService.get(AppSettings.EMITTER_KEY_USER_LOGGED_IN).emit(true);   
                          this.router.navigate([returnUrl]); //'/login'
                     }
                 },

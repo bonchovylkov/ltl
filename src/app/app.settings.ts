@@ -10,5 +10,6 @@ export class AppSettings {
 
 //emitter keys
    public static EMITTER_KEY_HIDE_ASIDE = 'EMITTER_KEY_HIDE_ASIDE'
+   public static EMITTER_KEY_USER_LOGGED_IN = 'EMITTER_KEY_USER_LOGGED_IN'
 
 }

@@ -44,7 +44,7 @@ export class BaSidebar {
       router.events
         .filter(event => event instanceof NavigationStart)
         .subscribe((event:NavigationStart) => {
-          this.display = this.isLoggedIn;
+          this.display = _userService.isLoggedIn();
         });
 
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
@@ -59,6 +59,7 @@ export class BaSidebar {
     //--------------------------------------------------------------------------
     //when the side bar inits i reset the display option by emitting if the user is logged
     //this can be overried by another emit - like the one in the home
+    
    // EmitterService.get(AppSettings.EMITTER_KEY_HIDE_ASIDE).emit(this.isLoggedIn);
 
     if (this._shouldMenuCollapse()) {

@@ -1,6 +1,7 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import  {UsersService} from '../../../services'
+import  {UsersService,EmitterService} from '../../../services'
 import {GlobalState} from '../../../GlobalState';
+import {AppSettings} from '../../../app.settings'
 
 @Component({
   selector: 'ba-page-top',
@@ -20,11 +21,19 @@ export class BaPageTop {
   constructor(private _state:GlobalState,
   private _userService: UsersService) {
 
+
+       EmitterService.get(AppSettings.EMITTER_KEY_USER_LOGGED_IN).
+    subscribe(data => {
+       this.isLoggedIn =_userService.isLoggedIn(); 
+      });
+
     this.isLoggedIn =_userService.isLoggedIn(); 
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
   }
+
+
 
   public toggleMenu() {
     this.isMenuCollapsed = !this.isMenuCollapsed;
