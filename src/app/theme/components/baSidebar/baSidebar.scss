@@ -118,8 +118,8 @@ a.al-sidebar-list-link {
 }
 
 @mixin layout-collapsed() {
-  .al-main {
-    margin-left: 180px;
+   .al-main {
+    margin-left: 50px;
   }
 
   .al-footer {
@@ -294,8 +294,8 @@ a.al-sidebar-list-link {
   .menu-collapsed {
     @include sidebar-hidden();
   }
-  .al-main {
-    margin-left: 180px;
+.al-main {
+    margin-left: 0;
   }
   .al-footer {
     padding-left: 0;
