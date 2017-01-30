@@ -62,10 +62,22 @@
             </ba-card>
         </div>
 
-        <div class="col-xlg-3 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12" *ngIf="fitnessProgram.Comments.length>0">
+        <div class="col-xlg-12 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12" *ngIf="fitnessProgram.Comments.length>0">
             <ba-card title="Comments" baCardClass="large-card with-scroll feed-panel">
-                <feed></feed>
+                <feed [inputFeed]=fitnessProgram.commentsViewModel></feed>
             </ba-card>
+
+           
+
+
+                <div class="form-group">
+                    <label for="new-comment">Add comment</label>
+                    <textarea placeholder="Comment.." class="form-control" id="new-comment" [(ngModel)]="newCommentValue"></textarea>
+                </div>
+
+                <div class="offset-md-11">
+                     <input type="button" class="btn btn-detault" value="Add" (click)='addNewComment()'/>
+                </div>
         </div>
     </div>
 </div>

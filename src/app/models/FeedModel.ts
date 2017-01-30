@@ -9,4 +9,5 @@ export class FeedModels{
       time: string
       ago: string
       expanded: boolean
+      authorPhotoUrl:string
 }

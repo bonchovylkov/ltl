@@ -36,9 +36,9 @@ $card-header-font-size: 16px;
   &.xmedium-card {
     height: $extra-medium-card-height;
   }
-  &.large-card {
+  /*&.large-card {
     height: $large-card-height;
-  }
+  }*/
   &.viewport100 {
     height: calc(100vh - 218px);
   }

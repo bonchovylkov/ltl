@@ -1,10 +1,10 @@
 <div class="feed-messages-container">
   <div class="feed-message" *ngFor="let message of feed" (click)="expandMessage(message)">
     <div class="message-icon" *ngIf="message.type == 'text-message'">
-      <img class="photo-icon" src="{{ ( message.author | baProfilePicture ) }}">
+      <img class="photo-icon" src="{{message.authorPhotoUrl}}">
     </div>
     <div class="message-icon" *ngIf="message.type != 'text-message'">
-      <img class="photo-icon" src="{{ ( message.author | baProfilePicture ) }}">
+      <img class="photo-icon" src="{{message.authorPhotoUrl }}">
       <span class="sub-photo-icon" [ngClass]="message.type"></span>
     </div>
     <div class="text-block text-message">
@@ -22,10 +22,10 @@
       </div>
       <div [ngClass]="{'hidden': !message.expanded}" class="message-time">
         <div class="post-time">
-          {{ message.time }}
+          {{ message.time | date: 'dd/MM/yyyy' }}
         </div>
         <div class="ago-time">
-          {{ message.ago }}
+         posted {{ message.ago | timeAgo }}
         </div>
       </div>
     </div>

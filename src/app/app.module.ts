@@ -23,14 +23,15 @@ import {CSSCarouselComponent,Feed} from './pages/components'
 //themes components
 import {BaPageTop,BaMsgCenter,BaSidebar,BaMenu,BaMenuItem,BaCard} from './theme/components/index'
 //pipes
-import {BaProfilePicturePipe} from './pipes'
+import {BaProfilePicturePipe,TimeAgoPipe} from './pipes'
 import { AppComponent } from './app.component';
 
 //directives
 import {BaSlimScroll} from './theme/directives/index'
 
 //services - but app level services
-import {UsersService,LoggedInGuard, ApiService,HeadersService,AlertService,FitnessProgramsService,EmitterService} from './services'
+import {UsersService,LoggedInGuard, ApiService,HeadersService,FeedMapperService
+  ,AlertService,FitnessProgramsService,EmitterService} from './services'
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -42,7 +43,8 @@ const APP_PROVIDERS = [
   AlertService,
   LoggedInGuard,
   FitnessProgramsService,
-  EmitterService
+  EmitterService,
+  FeedMapperService
 ];
 
 
@@ -58,7 +60,7 @@ const APP_PROVIDERS = [
     //theme components
     BaPageTop,BaMsgCenter,BaSidebar,BaMenu,BaMenuItem,BaCard,
     //pipes
-    BaProfilePicturePipe,
+    BaProfilePicturePipe,TimeAgoPipe,
     //directives
     BaSlimScroll
   ],
