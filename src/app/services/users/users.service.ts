@@ -18,7 +18,7 @@ export class UsersService {
     constructor(
          private router: Router,
          private apiSerive: ApiService,
-        // private alertService: AlertService,
+         private alertService: AlertService,
          private headersService: HeadersService){}
 
    register(url:string,values:UserRegister, returnUrl:string){
@@ -26,7 +26,7 @@ export class UsersService {
        this.apiSerive.post(url,values) 
        .subscribe(
                 data => {
-                   // this.alertService.success('Registration successful', true);
+                    this.alertService.success('Registration successful', true);
                     this.router.navigate([returnUrl]); //'/login'
                 },
                 error => {

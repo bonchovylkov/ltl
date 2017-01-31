@@ -32,6 +32,17 @@ export class FitnessProgramsService {
        
    }
 
+     addCommentToProgram(url:string,data:any){
+       this.loading = true;
+      return this.apiSerive.post(url,data,this.usersService.jwtHeader()) 
+       
+   }
+
+    addProgramInstance(url:string,data:any){
+    this.loading = true;
+      return this.apiSerive.post(url,data,this.usersService.jwtHeader()) 
+    }
+
 
  
 }

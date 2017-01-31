@@ -18,7 +18,7 @@ import {GlobalState} from './GlobalState'
 import {Register,Login,Home,Index,FsDetails,Dashboard} from './pages'
 
 //pages sub components
-import {CSSCarouselComponent,Feed} from './pages/components'
+import {CSSCarouselComponent,Feed,AlertComponent} from './pages/components'
 
 //themes components
 import {BaPageTop,BaMsgCenter,BaSidebar,BaMenu,BaMenuItem,BaCard} from './theme/components/index'
@@ -56,7 +56,7 @@ const APP_PROVIDERS = [
     Index, Register,Login,Home,FsDetails,Dashboard,
 
     //pages sub components
-    CSSCarouselComponent,Feed,
+    CSSCarouselComponent,Feed,AlertComponent,
     //theme components
     BaPageTop,BaMsgCenter,BaSidebar,BaMenu,BaMenuItem,BaCard,
     //pipes
