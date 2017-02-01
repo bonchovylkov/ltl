@@ -1,7 +1,9 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import  {UsersService,EmitterService} from '../../../services'
+import { Router } from '@angular/router';
 import {GlobalState} from '../../../GlobalState';
 import {AppSettings} from '../../../app.settings'
+import {UserProfileModel} from '../../../models'
 
 @Component({
   selector: 'ba-page-top',
@@ -15,12 +17,15 @@ export class BaPageTop {
   public isScrolled:boolean = false;
   public isMenuCollapsed:boolean = false;
    public isLoggedIn:boolean = false;
+   public userProfileInfo:UserProfileModel= null;
 
    //TODO: when the method for getting basic user info is ready - have to set it here
 
   constructor(private _state:GlobalState,
+  private router: Router,
   private _userService: UsersService) {
 
+       this.userProfileInfo = this._userService.getUserProfileInfo();
 
        EmitterService.get(AppSettings.EMITTER_KEY_USER_LOGGED_IN).
     subscribe(data => {
@@ -33,6 +38,10 @@ export class BaPageTop {
     });
   }
 
+logout(){
+  this._userService.logout();
+  this.router.navigate(['/']);
+}
 
 
   public toggleMenu() {

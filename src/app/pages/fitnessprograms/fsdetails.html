@@ -19,6 +19,8 @@
                             <p>Consists of: {{fitnessProgram.OverallTrainingCount}} trainings </p>
 
                             <p>Created by: {{fitnessProgram.AuthorName}}</p>
+
+                            <input *ngIf="!isEnrolled && isUserLoggedIn" type="button" class="btn btn-default" value="enroll" (click)="addProgramInstance()">
                         </div>
                     </div>
                 </div>
@@ -69,15 +71,17 @@
 
            
 
-
+            <div *ngIf="isUserLoggedIn">
                 <div class="form-group">
                     <label for="new-comment">Add comment</label>
                     <textarea placeholder="Comment.." class="form-control" id="new-comment" [(ngModel)]="newCommentValue"></textarea>
                 </div>
 
                 <div class="offset-md-11">
-                     <input type="button" class="btn btn-detault" value="Add" (click)='addNewComment()'/>
+                     <input type="button" class="btn btn-default" value="Add" (click)='addNewComment()'/>
                 </div>
+
+            </div>
         </div>
     </div>
 </div>

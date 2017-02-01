@@ -1,7 +1,7 @@
 import { NgModule} from '@angular/core'
 import { Routes, RouterModule } from '@angular/router';
 import {Register,Login,Home,Index,FsDetails,Dashboard} from './pages'
-import {LoggedInGuard} from './services'
+import {LoggedInGuard,AuthorizedUsersGuard} from './services'
 
 // const routes: Routes = [
 //   { path: '',  redirectTo: 'home', pathMatch: 'full' },
@@ -16,9 +16,9 @@ import {LoggedInGuard} from './services'
 
 const routes: Routes = [
   { path: '',  redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component:Home },
-  {path:'register',component:Register },
-   {path:'login',component:Login },
+  { path: 'home', component:Home ,canActivate:[AuthorizedUsersGuard],},
+  {path:'register',component:Register,canActivate:[AuthorizedUsersGuard], },
+   {path:'login',component:Login,canActivate:[AuthorizedUsersGuard], },
     {
     path: 'index',
     component: Index,

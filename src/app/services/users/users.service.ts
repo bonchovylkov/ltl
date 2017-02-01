@@ -10,7 +10,8 @@ import {ApiService} from "../api.service"
 import {EmitterService} from "../emitter.service"
 
 import {AppSettings} from "../../app.settings"
-import {UserRegister,UserLogin} from '../../models'
+import {UserRegister,UserLogin,UserProfileModel} from '../../models'
+import {layoutPaths} from '../../theme/index'
 
 @Injectable()
 export class UsersService {
@@ -35,6 +36,8 @@ export class UsersService {
                 });
    }
 
+
+
     login(url:string,values:UserLogin, returnUrl:string){
        this.loading = true;
        let headersUrlEncoded = this.headersService.getUrlEncodedHeader();
@@ -46,6 +49,21 @@ export class UsersService {
                     if (user && user.access_token) {
                         // store user details and jwt token in local storage to keep user logged in between page refreshes
                         localStorage.setItem(AppSettings.CURRENT_USER, JSON.stringify(user));
+
+                        //when the user is logged in successfully i make another call to get full user profile info.
+                        this.apiSerive.get(AppSettings.API_ENDPOINT_GET_PROFILE_INFO + user.userName,headersUrlEncoded).subscribe(userInfo=>{
+                            if(userInfo.Name){
+                                let userModel = new UserProfileModel();
+                                userModel.id = userInfo.Id;
+                                userModel.name = userInfo.Name;
+                                userModel.photoUrl = userInfo.PhotoUrl || layoutPaths.images.noPhoto;
+                                userModel.ratings = userInfo.Ratings;
+                                userModel.progressSheets = userInfo.ProgressSheets;
+                                userModel.fitnessProgramInstances = userInfo.FitnessProgramInstances;
+
+                                localStorage.setItem(AppSettings.CURRENT_USER_PROFILE_INFO, JSON.stringify(userModel));
+                            }
+                    });
                     }
                    // this.alertService.success('Login successful', true);
 
@@ -77,6 +95,14 @@ export class UsersService {
         return isLoggedIn;
     }
 
+    getUserProfileInfo():UserProfileModel{
+        if(this.isLoggedIn()){
+            let user = JSON.parse(localStorage.getItem(AppSettings.CURRENT_USER_PROFILE_INFO));
+            return user;
+        }else{
+            return null;
+        }
+    }
 
 
      jwtHeader():Headers {

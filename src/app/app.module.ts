@@ -30,7 +30,7 @@ import { AppComponent } from './app.component';
 import {BaSlimScroll} from './theme/directives/index'
 
 //services - but app level services
-import {UsersService,LoggedInGuard, ApiService,HeadersService,FeedMapperService
+import {UsersService,LoggedInGuard, ApiService,HeadersService,FeedMapperService,AuthorizedUsersGuard
   ,AlertService,FitnessProgramsService,EmitterService} from './services'
 
 // Application wide providers
@@ -42,6 +42,7 @@ const APP_PROVIDERS = [
   HeadersService,
   AlertService,
   LoggedInGuard,
+  AuthorizedUsersGuard,
   FitnessProgramsService,
   EmitterService,
   FeedMapperService

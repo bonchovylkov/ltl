@@ -1,7 +1,7 @@
 
 import {Component, ViewEncapsulation,OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router'
-import {FitnessProgramsService,FeedMapperService,AlertService} from '../../services/'
+import {FitnessProgramsService,FeedMapperService,AlertService, UsersService} from '../../services/'
 import {AppSettings} from '../../app.settings'
 import {FeedModels} from '../../models'
 
@@ -15,20 +15,25 @@ import {FeedModels} from '../../models'
 export class FsDetails implements OnInit{
 
   fitnessProgram:any = null;
+  isEnrolled:boolean = false;
+  isUserLoggedIn: boolean = false;
 
   constructor(private  route: ActivatedRoute,
   private  alert: AlertService,
+  private userService: UsersService,
     private _programsService:FitnessProgramsService,
     private mapperService:FeedMapperService ) {
     
     
   }
 
+
+
   newCommentValue:string = "";
 
   addNewComment(){
     console.log(this.newCommentValue);
-    this.alert.success(this.newCommentValue,true);
+    
     let comment = {FitnessProgramId:this.fitnessProgram.Id,Content:this.newCommentValue};
     this._programsService.addCommentToProgram(AppSettings.API_ENDPOINT_POST_COMMENT_TO_FITNESS_PROGRAM,comment).subscribe(
                         data => {
@@ -47,8 +52,8 @@ export class FsDetails implements OnInit{
     let instance = {FitnessProgramId:this.fitnessProgram.Id}
      this._programsService.addProgramInstance(AppSettings.API_ENDPOINT_POST_ADD_PROGRAM_INSTANCE,instance).subscribe(
                         data => {
-                         let a = data.json();
-                          
+                         this.isEnrolled = true;
+                         this.alert.success("You have enrolled for this program. Check it out in your profile");
                         },
                         error => {
                           //  this.alertService.error(error);
@@ -58,6 +63,7 @@ export class FsDetails implements OnInit{
 
   ngOnInit(){
 
+    this.isUserLoggedIn = this.userService.isLoggedIn();
     this.route.params.subscribe(params => {
           //comes from the route params
           let idProgram= params["id"]
