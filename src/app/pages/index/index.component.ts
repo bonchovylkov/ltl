@@ -1,6 +1,8 @@
 
 import {Component, ViewEncapsulation} from '@angular/core';
-
+// import {BaMenuService} from '../../theme/services'
+// import { MENU } from '../../app.menu';
+// import {Routes } from '@angular/router';
 
 
 
@@ -12,5 +14,7 @@ import {Component, ViewEncapsulation} from '@angular/core';
 })
 export class Index {
 
-
+  // constructor(private _menuService: BaMenuService,){
+  //   this._menuService.updateMenuByRoutes(<Routes>MENU);
+  // }
 }

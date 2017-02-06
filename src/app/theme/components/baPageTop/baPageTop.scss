@@ -11,6 +11,10 @@
   min-width: $resMin;
   padding: 0 32px 0 40px;
 
+  .dropdown-menu.dropdown-search{
+    position:initial;
+  }
+
   .dropdown-toggle::after {
     display: none;
   }
@@ -125,7 +129,7 @@ a.collapse-menu-link {
   transition: all 0.5s ease;
   white-space: nowrap;
   overflow: hidden;
-  width: 162px;
+    width: 334px;
   float: left;
   margin: 20px 0 0 30px;
 

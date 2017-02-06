@@ -16,7 +16,7 @@ import { BaThemePreloader } from './theme/services/baThemePreloader';
   templateUrl: './app.component.html',
   encapsulation: ViewEncapsulation.None,
   styles: [require('./app.component.scss')], //,require('./theme/sass/conf/conf.scss'),require('./theme/sass/_preloader.scss'),require('./theme/sass/_ionicons.scss')
-  providers:[BaMenuService,BaThemeSpinner]
+  providers:[BaThemeSpinner]
 })
 export class AppComponent {
 

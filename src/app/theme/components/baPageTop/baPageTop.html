@@ -8,8 +8,30 @@
   </a>
 
   <div class="search" *ngIf='isLoggedIn'>
-    <i class="ion-ios-search-strong" ng-click="startSearch()"></i>
-    <input id="searchInput" type="text" placeholder="Search for...">
+    <i class="fa fa-search" (click)="startSearch()"></i>
+    <input [ngModel]="searchInput" (ngModelChange)="valuechange($event)" id="searchInput" type="text" placeholder="Search for..." class="dropdown-toggle"  data-toggle="dropdown" aria-expanded="false">
+
+    <div class="top-dropdown-menu dropdown-menu dropdown-search" aria-labelledby="searchInput">
+      <i class="dropdown-arr"></i>
+
+      <div class="header clearfix">
+        <strong>Results</strong>
+        <a href>Mark All as Read</a>
+        <a href>Settings</a>
+      </div>
+      <div class="msg-list">
+        <!--<a *ngFor="let msg of notifications" href class="clearfix">
+          <div class="img-area"><img [ngClass]="{'photo-msg-item': !msg.image}"
+                                     src="{{ ( msg.image ||  (msg.name | baProfilePicture)) }}"></div>
+          <div class="msg-area">
+            <div>{{ msg.text }}</div>
+            <span>{{ msg.time }}</span>
+          </div>
+        </a>-->
+      </div>
+      <a href>See all notifications</a>
+    </div>
+
   </div>
 
   <div class="user-profile clearfix" *ngIf='isLoggedIn'>

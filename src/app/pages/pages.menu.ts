@@ -1,13 +1,13 @@
 export const PAGES_MENU = [
   {
-    path: 'pages',
+    path: 'index',
     children: [
       {
         path: 'dashboard',
         data: {
           menu: {
             title: 'Dashboard',
-            icon: 'ion-android-home',
+            icon: 'fa fa-user',
             selected: false,
             expanded: false,
             order: 0

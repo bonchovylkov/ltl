@@ -3,7 +3,7 @@ import {GlobalState} from '../../../GlobalState';
 import {layoutSizes} from '../../../theme';
 import  {UsersService,EmitterService} from '../../../services'
 import {AppSettings} from '../../../app.settings'
-import { Router, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, RoutesRecognized } from '@angular/router';
+import {Routes, Router, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, RoutesRecognized } from '@angular/router';
 import 'rxjs/add/operator/filter';
 
 @Component({
@@ -21,30 +21,30 @@ export class BaSidebar {
 
   
 
-   public display:boolean = null
+  //  public display:boolean = null
 
 
   constructor(private _elementRef:ElementRef,
-   private _state:GlobalState,
-  private _userService: UsersService,
-  private router: Router) {
+            private _state:GlobalState,
+            private _userService: UsersService,
+            private router: Router) {
   
-
+      
 
     this.isLoggedIn =_userService.isLoggedIn(); 
-    this.display = this.isLoggedIn
+   // this.display = this.isLoggedIn
     //this would be emmitet from the contructor of the home
     //this is how i am able to pass data/or just commands from component to component
     EmitterService.get(AppSettings.EMITTER_KEY_HIDE_ASIDE).
     subscribe(data => {
-       this.display = data
+      // this.display = data
       });
 
       //i subscribe to route change where i reset the display 
       router.events
         .filter(event => event instanceof NavigationStart)
         .subscribe((event:NavigationStart) => {
-          this.display = _userService.isLoggedIn();
+         // this.display = _userService.isLoggedIn();
         });
 
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {

@@ -2,13 +2,14 @@ import {Component, ViewEncapsulation, Input, Output, EventEmitter} from '@angula
 import {Router, Routes, NavigationEnd} from '@angular/router';
 import {Subscription} from 'rxjs/Rx';
 
+//the problem with this was to that is has to be singeton, which means that should not be used in (providers-more than once)
 import { BaMenuService } from '../../services';
 import {GlobalState} from '../../../GlobalState';
 
 @Component({
   selector: 'ba-menu',
   encapsulation: ViewEncapsulation.None,
-  providers:[BaMenuService],
+//  providers:[BaMenuService],
   styles: [require('./baMenu.scss')],
   template: require('./baMenu.html')
 })
